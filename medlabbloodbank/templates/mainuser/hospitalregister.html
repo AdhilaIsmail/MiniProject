@@ -1,0 +1,8 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="m-t-20 text-center">
+        <button type="submit" class="btn btn-primary submit-btn">Register Hospital</button>
+    </div>
+</form>

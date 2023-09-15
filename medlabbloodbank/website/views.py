@@ -284,6 +284,9 @@ def doctors(request):
 def addhospitals(request):
     return render(request, 'mainuser/add-hospitals.html')
 
+def hospitalregistration(request):
+    return render(request, 'mainuser/hospitalregistration.html')
+
 def employees(request):
     return render(request, 'mainuser/employees.html')
 
@@ -317,10 +320,45 @@ def search_by_blood_group(request):
     donors = Donor.objects.filter(blood_group__iexact=blood_group)
     return render(request, 'mainuser/registereddonortable.html', {'donors': donors})
 
+def hospitalhome(request):
+    return render(request, 'hospital/hospitalhome.html')
+
+
+def requestblood(request):
+    return render(request, 'hospital/requestblood.html')
+
+def bloodavailability(request):
+    return render(request, 'hospital/bloodavailability.html')
+
+def hospitalabout(request):
+    return render(request, 'hospital/hospitalabout.html')
 
 
 
+#hospital registration
+from django.shortcuts import render, redirect
+from .forms import HospitalForm
 
+def hospitalregister(request):
+    if request.method == 'POST':
+        form = HospitalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('addhospitals')  # Redirect to a success page
+    else:
+        form = HospitalForm()
+    return render(request, 'mainuser/hospitalregister.html', {'form': form})
+
+
+
+# views.py
+
+from django.shortcuts import render
+from .models import HospitalRegister
+
+def registeredhospitaltable(request):
+    hospitals = HospitalRegister.objects.all()
+    return render(request, 'mainuser/registeredhospitaltable.html', {'hospitals': hospitals})
 
 
 

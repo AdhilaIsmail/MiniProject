@@ -108,3 +108,19 @@ from django.db import models
 
 class UploadedFile(models.Model):
     file = models.FileField(upload_to='media/uploads/')
+
+
+
+from django.db import models
+
+class HospitalRegister(models.Model):
+    hospitalName = models.CharField(max_length=100)
+    contactPerson = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    location = models.TextField()
+    gpsCoordinates = models.CharField(max_length=50)
+    ownership = models.CharField(max_length=100)
+    hospitalURL = models.URLField(blank=True)  # URL is optional
+    status = models.CharField(max_length=20, default='Active')
+
