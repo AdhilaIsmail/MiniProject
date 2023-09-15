@@ -159,6 +159,20 @@
                                     </td>
                                 </tr>
                                         <!-- Add a delete modal for each hospital here -->
+                                        <div id="delete_hospital_{{ hospital.id }}" class="modal fade delete-modal" role="dialog">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                        <img src="{% static 'mainuser/img/sent.png' %}" alt="" width="50" height="46">
+                                                        <h3>Are you sure want to delete {{ hospital.hospitalName }}?</h3>
+                                                        <div class="m-t-20">
+                                                            <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                                                            <button type="submit" class="btn btn-danger" data-hospital-id="{{ hospital.id }}">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -169,6 +183,38 @@
                
            
     </div>
+
+
+    <script>
+        $(document).ready(function () {
+            // Handle delete button click
+            $('.delete-hospital').click(function (e) {
+                e.preventDefault();
+                var rowToDelete = $(this).closest('tr');
+                var hospitalId = rowToDelete.data('hospital-id'); // Assuming you add 'data-hospital-id' to your table row.
+    
+                // Display a confirmation dialog
+                if (confirm('Are you sure you want to mark this hospital as inactive?')) {
+                    // Perform AJAX request to update hospital status
+                    $.ajax({
+                        url: '/update_hospital_status/' + hospitalId + '/',
+                        type: 'POST',
+                        data: {
+                            'status': 'Inactive',
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        success: function () {
+                            // Remove the table row from the list
+                            rowToDelete.remove();
+                        },
+                        error: function () {
+                            alert('Error updating hospital status.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
     <!-- Add Bootstrap JavaScript or your JavaScript framework's JavaScript here -->
     <div class="sidebar-overlay" data-reff=""></div>
     <script src="{% static 'mainuser/js/jquery-3.2.1.min.js' %}"></script>

@@ -362,6 +362,31 @@ def registeredhospitaltable(request):
 
 
 
+# views.py
+
+# views.py
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import HospitalRegister
+
+@csrf_exempt  # Use csrf_exempt for simplicity. You may want to implement CSRF protection properly in your project.
+def update_hospital_status(request, hospital_id):
+    if request.method == 'POST':
+        try:
+            hospital = HospitalRegister.objects.get(pk=hospital_id)
+            hospital.status = 'Inactive'
+            hospital.save()
+            return JsonResponse({'message': 'Hospital status updated successfully'})
+        except HospitalRegister.DoesNotExist:
+            return JsonResponse({'error': 'Hospital not found'}, status=404)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+
+
+
 
 
 
