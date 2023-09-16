@@ -1,7 +1,7 @@
 {% load static %}
 <html>
 <head>
-    <title>Donor Profiles</title>
+    <title>Medlab Blood Bank - Registered Hospitals</title>
     <!-- Add Bootstrap CSS or your CSS framework's CSS here -->
     
         <meta charset="utf-8">
@@ -16,7 +16,101 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.js"></script>
 
+        <style>
+            /* Reduce the padding of table cells */
+            .table th, .table td {
+                padding: 6px 10px;
+            }
         
+            /* Reduce the font size of table headers */
+            .table thead th {
+                font-size: 14px;
+                color:#a16767;
+            }
+        
+            /* Reduce the font size of table data */
+            .table tbody td {
+                font-size: 12px;
+            }
+
+            .table tbody tr:nth-child(odd) {
+                background-color: #eddddd; /* Change to the color you prefer */
+            }
+        
+            /* Apply background color to even rows */
+            .table tbody tr:nth-child(even) {
+                background-color: #ffffff; /* Change to the color you prefer */
+            }
+            .sidebar {
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+                top: 50px;
+                width: 230px;
+                z-index: 1039;
+                background-color: #d4a5a5;
+                bottom: 0;
+                margin-top: 0px;
+                position: fixed;
+                left: 0;
+                transition: all 0.2s ease-in-out;
+            }
+            .sidebar.opened {
+                -webkit-transition: all 0.4s ease;
+                -moz-transition: all 0.4s ease;
+                transition: all 0.4s ease;
+            }
+            .sidebar-inner {
+                height: 100%;
+                transition: all 0.2s ease-in-out 0s;
+            }
+            .sidebar-menu ul {
+                font-size: 14px;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            .sidebar-menu li a {
+                color: white;
+                display: block;
+                font-size: 15px;
+                height: auto;
+                padding: 0 20px;
+            }
+            .sidebar-menu li a:hover {
+                color: #802020;
+            }
+            .sidebar-menu li.active a {
+                color: #802020;
+                background-color: #f3f3f3;
+            }
+            .menu-title {
+                color: #333;
+                font-size: 15px;
+                font-weight: 500;
+                padding: 12px 20px;
+            }
+            .menu-title > i {
+                float: right;
+                line-height: 40px;
+            }
+            .sidebar-menu li.menu-title a {
+                color: #009efb;
+                display: inline-block;
+                float: right;
+                padding: 0;
+            }
+            .sidebar-menu li.menu-title a.btn {
+                color: #fff;
+                display: block;
+                float: none;
+                font-size: 15px;
+                line-height: inherit;
+                margin-bottom: 15px;
+            }
+            .sidebar-menu ul ul a.active {
+                color: #009efb;
+                text-decoration: underline;
+            }
+        </style>   
   
 </head>
 <body>
@@ -123,10 +217,12 @@
             </div>
         </div>
         <div class="page-wrapper">
-            <h3 style="color: grey;">Registered Hospitals</h3>
+            <div class="col-sm-6 col-2 text-left m-b-15">
+                <h3 style="color: #a16767;margin-top: 20px;">Registered Hospitals</h3>
+            </div>
             <div class="row">
                 <div class="col-sm-11 col-9 text-right m-b-20">
-                    <a href="{% url 'hospitalregistration' %}" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add Hospital</a>
+                    <a href="{% url 'hospitalregistration' %}" class="btn btn btn-success btn-rounded float-right"><i class="fa fa-plus"></i> Add Hospital</a>
                 </div>
                 <div class="col-md-12">
                     <div class="table-responsive">

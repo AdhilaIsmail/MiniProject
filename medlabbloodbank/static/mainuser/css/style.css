@@ -824,7 +824,7 @@ textarea.form-control {
 	top: 50px;
 	width: 230px;
 	z-index: 1039;
-	background-color: #fff;
+	background-color: #8f3838;
 	bottom: 0;
 	margin-top: 0px;
 	position: fixed;
@@ -847,14 +847,14 @@ textarea.form-control {
 	padding: 0;
 }
 .sidebar-menu li a {
-	color: #888;
+	color: #573333;
 	display: block;
 	font-size: 15px;
 	height: auto;
 	padding: 0 20px;
 }
 .sidebar-menu li a:hover {
-	color: #009efb;
+	color: #ab5f57;
 }
 .sidebar-menu li.active a {
 	color: #009efb;
