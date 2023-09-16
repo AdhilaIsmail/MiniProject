@@ -344,7 +344,7 @@ def hospitalregister(request):
         form = HospitalForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('addhospitals')  # Redirect to a success page
+            return redirect('registeredhospitaltable')  # Redirect to a success page
     else:
         form = HospitalForm()
     return render(request, 'mainuser/hospitalregister.html', {'form': form})

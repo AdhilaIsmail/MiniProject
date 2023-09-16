@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'mainuser/img/favicon.ico' %}">
     <title>Medlab Blood Bank</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'mainuser/css/bootstrap.min.css' %}">
@@ -36,7 +36,7 @@
                                     <a href="{% url 'activities' %}">
                                         <div class="media">
 											<span class="avatar">
-												<img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
+												<img alt="John Doe" src="{% static 'maiuser/img/user.jpg' %}" class="img-fluid">
 											</span>
 											<div class="media-body">
 												<p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
