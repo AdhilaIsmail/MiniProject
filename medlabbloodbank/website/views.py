@@ -324,6 +324,12 @@ def search_by_blood_group(request):
 def bloodinventory(request):
     return render(request, 'mainuser/bloodinventory.html')
 
+def addnewgroup(request):
+    return render(request, 'mainuser/addnewgroup.html')
+
+
+
+
 def hospitalhome(request):
     return render(request, 'hospital/hospitalhome.html')
 
@@ -336,6 +342,8 @@ def bloodavailability(request):
 
 def hospitalabout(request):
     return render(request, 'hospital/hospitalabout.html')
+
+
 
 
 

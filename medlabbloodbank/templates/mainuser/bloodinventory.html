@@ -85,13 +85,15 @@
         }
 
         .blood-type-box {
-            background-color: #f2f2f2;
+            background-color: #a30a1a;
             padding: 10px;
             margin: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             text-align: center;
-            width: 150px;
+            width: 170px;
+            height:110px;
+            color:white;
             display: inline-block;
         }
 	</style>   
@@ -170,14 +172,14 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         <li class="menu-title">Main</li>
-                        <li class="active">
+                        <li>
                             <a href="{% url 'adminindex' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
 						<li>
-                            <a href="{% url 'doctors' %}"><i class="fa fa-user-md"></i> <span>Donors</span></a>
+                            <a href="{% url 'doctors' %}"><i class="fa fa-users"></i> <span>Donors</span></a>
                         </li>
                         <li>
-                            <a href="{% url 'registereddonortable' %}"><i class="fa fa-wheelchair"></i> <span>Registered Donors</span></a>
+                            <a href="{% url 'registereddonortable' %}"><i class="fa fa-registered"></i> <span>Registered Donors</span></a>
                         </li>
                         <li>
                             <a href="{% url 'registeredhospitaltable' %}"><i class="fa fa-hospital-o"></i> <span>Add Hospitals</span></a>
@@ -191,8 +193,8 @@
                         <li>
                             <a href="{% url 'appointments' %}"><i class="fa fa-list-alt"></i> <span>View Appointements</span></a>
                         </li>
-                        <li>
-                            <a href="{% url 'bloodinventory' %}"><i class="fa fa-hospital-o"></i> <span>Blood Inventory</span></a>
+                        <li class="active">
+                            <a href="{% url 'bloodinventory' %}"><i class="fa fa-tint"></i> <span>Blood Inventory</span></a>
                         </li>
 						<li class="submenu">
 							<a href="#"><i class="fa fa-user"></i> <span>Staffs </span> <span class="menu-arrow"></span></a>
@@ -206,9 +208,7 @@
         </div>
         <div class="page-wrapper">
             <div class="content">
-                <div class="blood-inventory">
-                    <!-- Blood Type Boxes will be inserted here dynamically -->
-                </div>
+                
             </div>
         </div>
     </div>
@@ -220,29 +220,7 @@
     <script src="{% static 'mainuser/js/Chart.bundle.js' %}"></script>
     <script src="{% static 'mainuser/js/chart.js' %}"></script>
     <script src="{% static 'mainuser/js/app.js' %}"></script>
-    <script>
-        // Sample data for blood inventory (replace this with your actual data)
-        const bloodInventoryData = [
-            { bloodType: 'A+', quantity: 50 },
-            { bloodType: 'B+', quantity: 30 },
-            { bloodType: 'O-', quantity: 20 },
-            // Add more blood types and quantities as needed
-        ];
-
-        // Get a reference to the blood inventory container
-        const bloodInventoryContainer = document.querySelector('.blood-inventory');
-
-        // Loop through the data and create div boxes for each blood type
-        bloodInventoryData.forEach((item) => {
-            const bloodTypeDiv = document.createElement('div');
-            bloodTypeDiv.classList.add('blood-type-box');
-            bloodTypeDiv.innerHTML = `
-                <h4>${item.bloodType}</h4>
-                <p>Quantity: ${item.quantity}</p>
-            `;
-            bloodInventoryContainer.appendChild(bloodTypeDiv);
-        });
-    </script>
+    
 </body>
 
 </html>
