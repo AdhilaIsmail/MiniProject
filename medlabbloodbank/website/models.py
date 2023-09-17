@@ -117,6 +117,7 @@ class HospitalRegister(models.Model):
     hospitalName = models.CharField(max_length=100)
     contactPerson = models.CharField(max_length=100)
     email = models.EmailField()
+   
     phone = models.CharField(max_length=20)
     location = models.TextField()
     gpsCoordinates = models.CharField(max_length=50)

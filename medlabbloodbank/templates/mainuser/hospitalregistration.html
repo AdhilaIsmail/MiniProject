@@ -207,66 +207,65 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Hospital Name <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="hospitalName" required>
+                                        <input class="form-control" type="text" name="hospitalName" value="{{ hospital.hospitalName }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Contact Person <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="contactPerson" required>
+                                        <input class="form-control" type="text" name="contactPerson" value="{{ hospital.contactPerson }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="email" name="email" required>
+                                        <input class="form-control" type="email" name="email" value="{{ hospital.email }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Phone Number <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="tel" name="phone" required>
+                                        <input class="form-control" type="tel" name="phone" value="{{ hospital.phone }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Location <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" name="location" rows="2" required></textarea>
-                                      
+                                        <textarea class="form-control" name="location" rows="2" required>{{ hospital.location }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>GPS Coordinates<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="gpsCoordinates">
+                                        <input class="form-control" type="text" name="gpsCoordinates" value="{{ hospital.gpsCoordinates }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Ownership<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="ownership">
+                                        <input class="form-control" type="text" name="ownership" value="{{ hospital.ownership }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>URL of Hospital</label>
-                                        <input class="form-control" type="url" name="hospitalURL">
+                                        <input class="form-control" type="url" name="hospitalURL" value="{{ hospital.hospitalURL }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="display-block">Status</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="hospital_active" value="Active" checked>
+                                    <input class="form-check-input" type="radio" name="status" id="hospital_active" value="Active" {% if hospital.status == 'Active' %}checked{% endif %}>
                                     <label class="form-check-label" for="hospital_active">Active</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="hospital_inactive" value="Inactive">
+                                    <input class="form-check-input" type="radio" name="status" id="hospital_inactive" value="Inactive" {% if hospital.status == 'Inactive' %}checked{% endif %}>
                                     <label class="form-check-label" for="hospital_inactive">Inactive</label>
                                 </div>
                             </div>
                             <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn">Register Hospital</button>
+                                <button class="btn btn-primary submit-btn">Update Hospital</button>
                             </div>
                         </form>
                     </div>

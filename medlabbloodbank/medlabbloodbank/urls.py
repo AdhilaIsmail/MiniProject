@@ -20,7 +20,9 @@ from django.urls import path,include
 from website import views
 from website.views import index, about,  service, testimonial, contact, loginn, register_donor, donatenow, registerasdonor, registereddonorresponse, notificationfordonation, send_sms, uploadresult, homebloodbank, appointmentschedule, register, loggout
 from django.contrib.auth import views as auth_views
-from website.views import adminindex, activities, appointments, doctors, departments, employees, profile, editprofile, registereddonortable, search_by_name, search_by_place,search_by_blood_group, addhospitals, hospitalregistration, hospitalregister, registeredhospitaltable, update_hospital_status
+from website.views import adminindex, activities, appointments, doctors, departments, employees, profile, editprofile, registereddonortable
+from website.views import search_by_name, search_by_place,search_by_blood_group, addhospitals, hospitalregistration, hospitalregister
+from website.views import registeredhospitaltable, update_hospital_status, bloodinventory
 from website.views import hospitalhome, requestblood, bloodavailability, hospitalabout
 
 urlpatterns = [
@@ -82,7 +84,8 @@ urlpatterns = [
     path('search-by-blood-group/', search_by_blood_group, name='search_by_blood_group'),
     path('registeredhospitaltable/', registeredhospitaltable, name='registeredhospitaltable'),
     path('update_hospital_status/<int:hospital_id>/', update_hospital_status, name='update_hospital_status'),
-
+    path('bloodinventory', bloodinventory, name='bloodinventory'),
+    
 
     #hospital
     path('hospitalhome', hospitalhome, name='hospitalhome'),

@@ -1,89 +1,100 @@
 {% load static %}
 <html lang="en">
 
-
-<!-- departments23:21-->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'mainuser/img/favicon.ico' %}">
     <title>Medlab Blood Bank</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'mainuser/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'mainuser/css/dataTables.bootstrap4.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mainuser/css/font-awesome.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mainuser/css/style.css' %}">
     <style>
             
-        .sidebar {
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-            top: 50px;
-            width: 230px;
-            z-index: 1039;
-            background-color: #d4a5a5;
-            bottom: 0;
-            margin-top: 0px;
-            position: fixed;
-            left: 0;
-            transition: all 0.2s ease-in-out;
+		.sidebar {
+			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+			top: 50px;
+			width: 230px;
+			z-index: 1039;
+			background-color: #d4a5a5;
+			bottom: 0;
+			margin-top: 0px;
+			position: fixed;
+			left: 0;
+			transition: all 0.2s ease-in-out;
+		}
+		.sidebar.opened {
+			-webkit-transition: all 0.4s ease;
+			-moz-transition: all 0.4s ease;
+			transition: all 0.4s ease;
+		}
+		.sidebar-inner {
+			height: 100%;
+			transition: all 0.2s ease-in-out 0s;
+		}
+		.sidebar-menu ul {
+			font-size: 14px;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		.sidebar-menu li a {
+			color: white;
+			display: block;
+			font-size: 15px;
+			height: auto;
+			padding: 0 20px;
+		}
+		.sidebar-menu li a:hover {
+			color: #802020;
+		}
+		.sidebar-menu li.active a {
+			color: #802020;
+			background-color: #f3f3f3;
+		}
+		.menu-title {
+			color: #333;
+			font-size: 15px;
+			font-weight: 500;
+			padding: 12px 20px;
+		}
+		.menu-title > i {
+			float: right;
+			line-height: 40px;
+		}
+		.sidebar-menu li.menu-title a {
+			color: #009efb;
+			display: inline-block;
+			float: right;
+			padding: 0;
+		}
+		.sidebar-menu li.menu-title a.btn {
+			color: #fff;
+			display: block;
+			float: none;
+			font-size: 15px;
+			line-height: inherit;
+			margin-bottom: 15px;
+		}
+		.sidebar-menu ul ul a.active {
+			color: #009efb;
+			text-decoration: underline;
+		}.blood-inventory {
+            text-align: center;
         }
-        .sidebar.opened {
-            -webkit-transition: all 0.4s ease;
-            -moz-transition: all 0.4s ease;
-            transition: all 0.4s ease;
-        }
-        .sidebar-inner {
-            height: 100%;
-            transition: all 0.2s ease-in-out 0s;
-        }
-        .sidebar-menu ul {
-            font-size: 14px;
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-        .sidebar-menu li a {
-            color: white;
-            display: block;
-            font-size: 15px;
-            height: auto;
-            padding: 0 20px;
-        }
-        .sidebar-menu li a:hover {
-            color: #802020;
-        }
-        .sidebar-menu li.active a {
-            color: #802020;
-            background-color: #f3f3f3;
-        }
-        .menu-title {
-            color: #333;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 12px 20px;
-        }
-        .menu-title > i {
-            float: right;
-            line-height: 40px;
-        }
-        .sidebar-menu li.menu-title a {
-            color: #009efb;
+
+        .blood-type-box {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            width: 150px;
             display: inline-block;
-            float: right;
-            padding: 0;
         }
-        .sidebar-menu li.menu-title a.btn {
-            color: #fff;
-            display: block;
-            float: none;
-            font-size: 15px;
-            line-height: inherit;
-            margin-bottom: 15px;
-        }
-        .sidebar-menu ul ul a.active {
-            color: #009efb;
-            text-decoration: underline;
-        }
-    </style>   
+	</style>   
 
 </head>
 
@@ -92,7 +103,7 @@
         <div class="header">
 			<div class="header-left">
 				<a href="{% url 'adminindex' %}" class="logo">
-					<img src="{% static 'mainuser/img/logo.png' %}" width="35" height="35" alt=""> <span>Medlab Blood Bank</span>
+					<img src="{% static 'mainuser/img/logocopy.png' %}" width="35" height="35" alt=""> <span>Medlab Blood Bank</span>
 				</a>
 			</div>
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -110,7 +121,7 @@
                                     <a href="{% url 'activities' %}">
                                         <div class="media">
 											<span class="avatar">
-												<img alt="John Doe" src="{% static 'mainuser/img/user.jpg' %}" class="img-fluid rounded-circle">
+												<img alt="John Doe" src="{% static 'maiuser/img/user.jpg' %}" class="img-fluid">
 											</span>
 											<div class="media-body">
 												<p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
@@ -119,10 +130,9 @@
                                         </div>
                                     </a>
                                 </li>
-                                
                             </ul>
                         </div>
-                        
+                       
                     </div>
                 </li>
                 <li class="nav-item dropdown d-none d-sm-block">
@@ -130,24 +140,27 @@
                 </li>
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
-                        <span class="user-img"><img class="rounded-circle" src="{% static 'mainuser/img/user.jpg' %}" width="40" alt="mainuser">
-							<span class="status online"></span></span>
-                        <span>Admin</span>
+                        <span class="user-img">
+							<img class="rounded-circle" src="{% static 'mainuser/img/user.jpg'  %}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span>Admin</span>
                     </a>
 					<div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
-                        <a class="dropdown-item" href="{% url 'editprofile' %}">Edit Profile</a>
-                      
-                        <a class="dropdown-item" href="{% url 'loggout' %}">Logout</a>
+						<a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
+						<a class="dropdown-item" href="{% url 'editprofile' %}">Edit Profile</a>
+						
+						<a class="dropdown-item" href="{% url 'loggout' %}">Logout</a>
 					</div>
                 </li>
-            </ul>
+                
+            </ul> 
             <div class="dropdown mobile-user-menu float-right">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
                     <a class="dropdown-item" href="{% url 'editprofile' %}">Edit Profile</a>
-                   
+                  
                     <a class="dropdown-item" href="{% url 'loggout' %}">Logout</a>
                 </div>
             </div>
@@ -157,7 +170,7 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         <li class="menu-title">Main</li>
-                        <li>
+                        <li class="active">
                             <a href="{% url 'adminindex' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
 						<li>
@@ -172,7 +185,7 @@
                         <!-- <li>
                             <a href="doctors.html"><i class="fa fa-calendar-check-o"></i> <span>Staffs</span></a>
                         </li> -->
-                        <li class="active">
+                        <li>
                             <a href="{% url 'departments' %}"><i class="fa fa-hospital-o"></i> <span>Blood Bank Camps</span></a>
                         </li>
                         <li>
@@ -193,70 +206,43 @@
         </div>
         <div class="page-wrapper">
             <div class="content">
-                <div class="row">
-                    <div class="col-sm-5 col-5">
-                        <h4 class="page-title">Departments</h4>
-                    </div>
-                   
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-striped custom-table mb-0 datatable">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Department Name</th>
-                                        <th>Status</th>
-                                        <th class="text-right">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dentists</td>
-										<td><span class="custom-badge status-green">Active</span></td>
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                   
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="blood-inventory">
+                    <!-- Blood Type Boxes will be inserted here dynamically -->
                 </div>
             </div>
-            
         </div>
-		<div id="delete_department" class="modal fade delete-modal" role="dialog">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-body text-center">
-						<img src="{% static 'mainuser/img/sent.png' %}" alt="" width="50" height="46">
-						<h3>Are you sure want to delete this Department?</h3>
-						<div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-							<button type="submit" class="btn btn-danger">Delete</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
     <script src="{% static 'mainuser/js/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static 'mainuser/js/popper.min.js' %}"></script>
     <script src="{% static 'mainuser/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'mainuser/js/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'mainuser/js/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'mainuser/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'mainuser/js/Chart.bundle.js' %}"></script>
+    <script src="{% static 'mainuser/js/chart.js' %}"></script>
     <script src="{% static 'mainuser/js/app.js' %}"></script>
+    <script>
+        // Sample data for blood inventory (replace this with your actual data)
+        const bloodInventoryData = [
+            { bloodType: 'A+', quantity: 50 },
+            { bloodType: 'B+', quantity: 30 },
+            { bloodType: 'O-', quantity: 20 },
+            // Add more blood types and quantities as needed
+        ];
+
+        // Get a reference to the blood inventory container
+        const bloodInventoryContainer = document.querySelector('.blood-inventory');
+
+        // Loop through the data and create div boxes for each blood type
+        bloodInventoryData.forEach((item) => {
+            const bloodTypeDiv = document.createElement('div');
+            bloodTypeDiv.classList.add('blood-type-box');
+            bloodTypeDiv.innerHTML = `
+                <h4>${item.bloodType}</h4>
+                <p>Quantity: ${item.quantity}</p>
+            `;
+            bloodInventoryContainer.appendChild(bloodTypeDiv);
+        });
+    </script>
 </body>
 
-
-<!-- departments23:21-->
 </html>

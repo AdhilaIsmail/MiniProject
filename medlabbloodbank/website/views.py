@@ -320,6 +320,10 @@ def search_by_blood_group(request):
     donors = Donor.objects.filter(blood_group__iexact=blood_group)
     return render(request, 'mainuser/registereddonortable.html', {'donors': donors})
 
+
+def bloodinventory(request):
+    return render(request, 'mainuser/bloodinventory.html')
+
 def hospitalhome(request):
     return render(request, 'hospital/hospitalhome.html')
 
@@ -384,6 +388,30 @@ def update_hospital_status(request, hospital_id):
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
+# from django.shortcuts import render, get_object_or_404
+# from .models import HospitalRegister  # Import your Hospital model
+
+# def edit_hospital(request, hospital_id):
+#     hospital = get_object_or_404(HospitalRegister, id=hospital_id)  # Replace 'Hospital' with your actual model name
+#     context = {'hospital': hospital}
+#     return render(request, 'mainuser/hospitalregistration.html', context)
+
+# from django.shortcuts import render, redirect, get_object_or_404
+# from .models import HospitalRegister
+# from .forms import HospitalForm
+
+# def edit_hospital(request, hospital_id):
+#     hospital = get_object_or_404(HospitalRegister, pk=hospital_id)
+    
+#     if request.method == 'POST':
+#         form = HospitalForm(request.POST, instance=hospital)
+#         if form.is_valid():
+#             form.save()  # This will update the existing hospital record
+#             return redirect('registeredhospitaltable')  # Redirect to the hospital list view or another appropriate page
+#     else:
+#         form = HospitalForm(instance=hospital)
+    
+#     return render(request, 'mainuser/hospitalregistration.html', {'form': form, 'hospital': hospital})
 
 
 
