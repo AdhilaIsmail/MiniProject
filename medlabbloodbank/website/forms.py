@@ -91,6 +91,13 @@ class UploadFileForm(forms.Form):
 #     class Meta:
 #         model = HospitalRegister
 #         fields = '__all__'  # You can specify fields explicitly if needed
+from django import forms
+from .models import HospitalRegister
+
+class HospitalRegisterForm(forms.ModelForm):
+    class Meta:
+        model = HospitalRegister
+        fields = '__all__'  # Include all fields from the model
 
 
 # forms.py

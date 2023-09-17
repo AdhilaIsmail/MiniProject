@@ -243,7 +243,7 @@
                         
                         <button id="toggle-active" class="btn btn-primary btn-rounded"><i class="fa fa-filter"></i> Show Active Hospitals</button>
                        
-                        <a href="{% url 'hospitalregistration' %}" class="btn btn-success btn-rounded"><i class="fa fa-plus"></i> Add Hospital</a>
+                        <a href="{% url 'hospital_registration' %}" class="btn btn-success btn-rounded"><i class="fa fa-plus"></i> Add Hospital</a>
                     </div>
                 </div>
                 
@@ -273,6 +273,7 @@
                                     <td>{{ hospital.location }}</td>
                                     <td>{{ hospital.gpsCoordinates }}</td>
                                     <td>{{ hospital.ownership }}</td>
+                                    <td>{{ hospital.password }}</td>
                                     <td>
                                     {% if hospital.status == "Active" %}
                                     <span class="status-active">{{ hospital.status }}</span>

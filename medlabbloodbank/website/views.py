@@ -344,6 +344,20 @@ def hospitalabout(request):
     return render(request, 'hospital/hospitalabout.html')
 
 
+from django.shortcuts import render, redirect
+from .forms import HospitalRegisterForm
+
+def hospital_registration(request):
+    if request.method == 'POST':
+        form = HospitalRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the data to the database
+            # Redirect to a success page or do something else
+            return redirect('adminindex')  # Replace with your success page URL name
+    else:
+        form = HospitalRegisterForm()
+
+    return render(request, 'mainuser/hospitalregistration.html', {'form': form})
 
 
 #neededone
@@ -365,12 +379,12 @@ def hospitalabout(request):
 
 # views.py
 #needed one
-# from django.shortcuts import render
-# from .models import HospitalRegister
+from django.shortcuts import render
+from .models import HospitalRegister
 
-# def registeredhospitaltable(request):
-#     hospitals = HospitalRegister.objects.all()
-#     return render(request, 'mainuser/registeredhospitaltable.html', {'hospitals': hospitals})
+def registeredhospitaltable(request):
+    hospitals = HospitalRegister.objects.all()
+    return render(request, 'mainuser/registeredhospitaltable.html', {'hospitals': hospitals})
 
 
 
