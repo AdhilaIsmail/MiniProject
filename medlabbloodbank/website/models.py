@@ -111,17 +111,16 @@ class UploadedFile(models.Model):
 
 
 
+
+
+
+# models.py
+
 from django.db import models
 
-class HospitalRegister(models.Model):
-    hospitalName = models.CharField(max_length=100)
-    contactPerson = models.CharField(max_length=100)
-    email = models.EmailField()
-   
-    phone = models.CharField(max_length=20)
-    location = models.TextField()
-    gpsCoordinates = models.CharField(max_length=50)
-    ownership = models.CharField(max_length=100)
-    hospitalURL = models.URLField(blank=True)  # URL is optional
-    status = models.CharField(max_length=20, default='Active')
+class BloodType(models.Model):
+    blood_type = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return self.blood_type
 

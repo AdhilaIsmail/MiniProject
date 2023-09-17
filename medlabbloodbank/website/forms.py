@@ -84,10 +84,24 @@ class UploadFileForm(forms.Form):
     )
 
 
-from django import forms
-from .models import HospitalRegister
+# from django import forms
+# from .models import HospitalRegister
 
-class HospitalForm(forms.ModelForm):
+# class HospitalForm(forms.ModelForm):
+#     class Meta:
+#         model = HospitalRegister
+#         fields = '__all__'  # You can specify fields explicitly if needed
+
+
+# forms.py
+
+from django import forms
+from .models import BloodType
+
+class BloodTypeForm(forms.ModelForm):
     class Meta:
-        model = HospitalRegister
-        fields = '__all__'  # You can specify fields explicitly if needed
+        model = BloodType
+        fields = ['blood_type']
+
+
+

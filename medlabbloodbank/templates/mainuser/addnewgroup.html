@@ -81,6 +81,11 @@
 			color: #009efb;
 			text-decoration: underline;
 		}
+        .back-button {
+            position: absolute;
+            bottom: 20px; 
+            right: 20px; 
+        }
 	</style>   
 
 </head>
@@ -191,36 +196,27 @@
         </div>
         <div class="page-wrapper">
             <div class="content">
-                <!-- Blood Group Form -->
-                <div class="blood-group-form">
-                    <h2>Add New Blood Group</h2>
+                <h3>Add New Blood Group</h3>
+                <form method="POST" action="{% url 'addblood' %}">
+                    {% csrf_token %}
+                    
+                    <!-- Blood Type Input -->
+                    <label for="id_blood_type">Blood Type:</label>
+                   
+                    {{ form.blood_type }}
+                    {{ form.blood_type.errors }}  <!-- Display form errors here -->
+                    <div id="blood_type_error" class="text-danger"></div>
+                    <!-- Submit Button -->
+                    <input type="submit" value="Submit" class="btn btn-success">
 
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">Submit</button>
-                    </form>
-                    {% comment %} <form id="bloodGroupForm" method="post" action="{% url 'addnewgroup' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="bloodType">Blood Type</label>
-                            <input type="text" class="form-control" id="bloodType" name="bloodType" required>
-                        </div>
-                        {% comment %} <div class="form-group">
-                            <label for="quantity">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" required>
-                        </div> {% endcomment %}
-
-                        {% comment %} <button type="submit" class="btn btn-success">Submit</button>
-                    </form> {% endcomment %} 
-                </div>
-        
-                <div class="blood-inventory">
-                    <!-- Blood Type Boxes will be inserted here dynamically -->
-                </div>
-				
+                    <button type="button" onclick="window.history.back();" class="btn btn-primary back-button">Go Back</button>
+                    
+                </form>
             </div>
         </div>
+
+        
+        
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
     <script src="{% static 'mainuser/js/jquery-3.2.1.min.js' %}"></script>
@@ -230,5 +226,23 @@
     <script src="{% static 'mainuser/js/Chart.bundle.js' %}"></script>
     <script src="{% static 'mainuser/js/chart.js' %}"></script>
     <script src="{% static 'mainuser/js/app.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#id_blood_type").on("keyup", function() {
+                var bloodType = $(this).val().trim();
+                var bloodTypePattern = /^(A|B|AB|O)[+-]$/;
+    
+                if (bloodType === "") {
+                    $("#blood_type_error").text("Blood Type is required.");
+                } else if (!bloodTypePattern.test(bloodType)) {
+                    $("#blood_type_error").text("Invalid Blood Type format. Example: A+, B-, AB+, O-");
+                } else {
+                    $("#blood_type_error").text(""); // Clear any existing error message
+                }
+            });
+        });
+    </script>
+    
+    
 </body>
 </html>

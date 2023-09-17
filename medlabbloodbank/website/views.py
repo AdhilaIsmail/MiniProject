@@ -346,54 +346,54 @@ def hospitalabout(request):
 
 
 
-
+#neededone
 #hospital registration
-from django.shortcuts import render, redirect
-from .forms import HospitalForm
+# from django.shortcuts import render, redirect
+# from .forms import HospitalForm
 
-def hospitalregister(request):
-    if request.method == 'POST':
-        form = HospitalForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('registeredhospitaltable')  # Redirect to a success page
-    else:
-        form = HospitalForm()
-    return render(request, 'mainuser/hospitalregister.html', {'form': form})
+# def hospitalregister(request):
+#     if request.method == 'POST':
+#         form = HospitalForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('registeredhospitaltable')  # Redirect to a success page
+#     else:
+#         form = HospitalForm()
+#     return render(request, 'mainuser/hospitalregister.html', {'form': form})
+
+
+
+# views.py
+#needed one
+# from django.shortcuts import render
+# from .models import HospitalRegister
+
+# def registeredhospitaltable(request):
+#     hospitals = HospitalRegister.objects.all()
+#     return render(request, 'mainuser/registeredhospitaltable.html', {'hospitals': hospitals})
 
 
 
 # views.py
 
-from django.shortcuts import render
-from .models import HospitalRegister
-
-def registeredhospitaltable(request):
-    hospitals = HospitalRegister.objects.all()
-    return render(request, 'mainuser/registeredhospitaltable.html', {'hospitals': hospitals})
-
-
-
 # views.py
+#needd one
+# from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+# from .models import HospitalRegister
 
-# views.py
-
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from .models import HospitalRegister
-
-@csrf_exempt  # Use csrf_exempt for simplicity. You may want to implement CSRF protection properly in your project.
-def update_hospital_status(request, hospital_id):
-    if request.method == 'POST':
-        try:
-            hospital = HospitalRegister.objects.get(pk=hospital_id)
-            hospital.status = 'Inactive'
-            hospital.save()
-            return JsonResponse({'message': 'Hospital status updated successfully'})
-        except HospitalRegister.DoesNotExist:
-            return JsonResponse({'error': 'Hospital not found'}, status=404)
-    else:
-        return JsonResponse({'error': 'Invalid request method'}, status=400)
+# @csrf_exempt  # Use csrf_exempt for simplicity. You may want to implement CSRF protection properly in your project.
+# def update_hospital_status(request, hospital_id):
+#     if request.method == 'POST':
+#         try:
+#             hospital = HospitalRegister.objects.get(pk=hospital_id)
+#             hospital.status = 'Inactive'
+#             hospital.save()
+#             return JsonResponse({'message': 'Hospital status updated successfully'})
+#         except HospitalRegister.DoesNotExist:
+#             return JsonResponse({'error': 'Hospital not found'}, status=404)
+#     else:
+#         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
 # from django.shortcuts import render, get_object_or_404
@@ -421,6 +421,34 @@ def update_hospital_status(request, hospital_id):
     
 #     return render(request, 'mainuser/hospitalregistration.html', {'form': form, 'hospital': hospital})
 
+# views.py
+
+from django.shortcuts import render, redirect
+from .forms import BloodTypeForm
+from django.db import IntegrityError  # Import IntegrityError
+
+def addblood(request):
+    if request.method == 'POST':
+        form = BloodTypeForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('bloodinventory')
+            except IntegrityError:
+                form.add_error('blood_type', 'Blood type already exists.')  # Add a form error
+    else:
+        form = BloodTypeForm()
+    return render(request, 'mainuser/addnewgroup.html', {'form': form})
+
+
+# views.py
+
+from django.shortcuts import render
+from .models import BloodType
+
+def bloodinventory(request):
+    blood_types = BloodType.objects.all()
+    return render(request, 'mainuser/bloodinventory.html', {'blood_types': blood_types})
 
 
 

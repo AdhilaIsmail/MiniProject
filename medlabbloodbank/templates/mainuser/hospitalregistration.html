@@ -204,7 +204,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <form action="{% url 'hospitalregister' %}" method="POST">
+                        <form action="" method="POST">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-sm-6">
@@ -253,6 +253,12 @@
                                     <div class="form-group">
                                         <label>URL of Hospital</label>
                                         <input class="form-control" type="url" name="hospitalURL" value="{{ hospital.hospitalURL }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Password <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="password" name="password" required>
                                     </div>
                                 </div>
                             </div>
